@@ -1,0 +1,29 @@
+<mat-table matSort [dataSource]="datasource" class="mat-elevation-z8">
+
+  @for(column of displayedColumns; track column) {
+  <ng-container [matColumnDef]="column">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      {{ column | titlecase }}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let character">
+      @switch(column){
+        @case ('image') {
+          <a [routerLink]="['/character', character.id]">
+            <img [src]="character.image" alt="{{ character.name }}" />
+          </a>
+        }
+        @case ('episodes') {
+          {{ character.episode.length }}
+        }
+        @default {
+          {{ character[column] }}
+
+        }
+      }
+    </mat-cell>
+  </ng-container>
+  }
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>

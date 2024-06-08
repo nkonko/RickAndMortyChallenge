@@ -10,5 +10,17 @@ export const routes: Routes = [
             import('./pages/home/home.component')
             .then(m => m.HomeComponent)
   },
-  { path: '**', redirectTo: 'not-found'}
+  {
+    path: 'characters',
+    loadComponent: () =>
+            import('./pages/character-list/components/character-list.component')
+            .then(m => m.CharacterListComponent)
+  },
+  {
+    path: 'character/:id',
+    loadComponent: () =>
+            import('./pages/character-detail/character-detail.component')
+            .then(m => m.CharacterDetailComponent)
+  },
+  // { path: '**', redirectTo: 'not-found'}
 ];

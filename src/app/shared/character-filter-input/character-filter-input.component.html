@@ -1,0 +1,18 @@
+<div class="filters">
+  <mat-form-field>
+    <input matInput placeholder="Name" [(ngModel)]="filterName">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Status</mat-label>
+    <mat-select [(ngModel)]="filterStatus">
+      <mat-option value="Alive">Alive</mat-option>
+      <mat-option value="Dead">Dead</mat-option>
+      <mat-option value="unknown">Unknown</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Species" [(ngModel)]="filterSpecies">
+  </mat-form-field>
+  <button mat-button (click)="applyFilter()">Apply Filter</button>
+  <button mat-button (click)="clearFilter()">Clear Filter</button>
+</div>

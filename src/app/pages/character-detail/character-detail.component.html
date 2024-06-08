@@ -1,0 +1,23 @@
+
+@if(character$ | async; as character) {
+
+  <div fxLayout="column" fxLayoutAlign="center stretch" class="character-detail-container">
+    <mat-card class="character-detail-card mat-elevation-z8">
+      <mat-card-header>
+      <mat-card-title>{{ character.name }}</mat-card-title>
+      <mat-card-subtitle>{{ character.status }} - {{ character.species }}</mat-card-subtitle>
+    </mat-card-header>
+  <img mat-card-image [src]="character.image" alt="{{ character.name }}">
+    <mat-card-content>
+      <p><strong>Gender:</strong> {{ character.gender }}</p>
+      <p><strong>Origin:</strong> {{ character.origin.name }}</p>
+      <p><strong>Location:</strong> {{ character.location.name }}</p>
+      <p><strong>Number of Episodes:</strong> {{ character.episode.length }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="print()">Back</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+}

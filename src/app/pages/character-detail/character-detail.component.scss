@@ -1,0 +1,19 @@
+.character-detail-container {
+  padding: 16px;
+}
+
+.character-detail-card {
+  max-width: 600px;
+  margin: auto;
+}
+
+@media (max-width: 600px) {
+  .character-detail-card {
+    max-width: 100%;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
