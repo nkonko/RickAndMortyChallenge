@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import { CharacterService } from '../../services/character.service';
+import { CharacterService } from '../../../pages/character-list/services/character.service';
 import { loadCharacters, loadCharactersFailure, loadCharactersSuccess } from '../actions/character.action';
 import { of } from 'rxjs';
 

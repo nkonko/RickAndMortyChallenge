@@ -1,0 +1,43 @@
+.mat-table {
+  width: 100%;
+}
+
+mat-header-cell, mat-cell {
+  padding: 8px;
+}
+
+img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+@media (max-width: 600px) {
+  .mat-table {
+    font-size: 12px;
+  }
+  img {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .mat-table {
+    font-size: 14px;
+  }
+  img {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .mat-table {
+    font-size: 16px;
+  }
+  img {
+    height: 50px;
+    width: 50px;
+  }
+}

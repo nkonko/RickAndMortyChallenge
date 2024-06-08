@@ -1,0 +1,43 @@
+
+  <div fxLayout="column" fxLayoutAlign="center stretch">
+  <mat-card>
+    <mat-card-title>Character List</mat-card-title>
+    <mat-card-content>
+      <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Image Column -->
+        <ng-container matColumnDef="image">
+          <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+          <mat-cell *matCellDef="let character"> <img [src]="character.image" alt="{{ character.name }}"> </mat-cell>
+        </ng-container>
+
+      <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+          <mat-cell *matCellDef="let character"> {{ character.name }} </mat-cell>
+        </ng-container>
+
+      <!-- Status Column -->
+    <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+          <mat-cell *matCellDef="let character"> {{ character.status }} </mat-cell>
+        </ng-container>
+
+        <!-- Species Column -->
+      <ng-container matColumnDef="species">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Species </mat-header-cell>
+          <mat-cell *matCellDef="let character"> {{ character.species }} </mat-cell>
+        </ng-container>
+
+        <!-- Number of Episodes Column -->
+        <ng-container matColumnDef="episodes">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Episodes </mat-header-cell>
+          <mat-cell *matCellDef="let character"> {{ character.episode.length }} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
+</div>
