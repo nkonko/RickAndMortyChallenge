@@ -5,31 +5,13 @@
     <mat-card-title>Character List</mat-card-title>
     <mat-card-content>
 
-        <app-custom-table [datasource]="dataSource" [displayedColumns]="displayedColumns"></app-custom-table>
-        <!--
-           -->
-    <!-- <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-          <mat-cell *matCellDef="let character"> {{ character.name }} </mat-cell>
-        </ng-container>
+        <app-custom-table
+                          [datasource]="dataSource"
+                          [displayedColumns]="displayedColumns"
+                          [imageAlt]="'picture'"
+                          routerLinkData="/character"
+        ></app-custom-table>
 
-    <ng-container matColumnDef="status">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-          <mat-cell *matCellDef="let character"> {{ character.status }} </mat-cell>
-        </ng-container>
-
-      <ng-container matColumnDef="species">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Species </mat-header-cell>
-          <mat-cell *matCellDef="let character"> {{ character.species }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="episodes">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Episodes </mat-header-cell>
-          <mat-cell *matCellDef="let character"> {{ character.episode.length }} </mat-cell>
-        </ng-container> -->
-
-        <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
     </mat-card-content>
     <div #bottomAnchor></div>
   </mat-card>

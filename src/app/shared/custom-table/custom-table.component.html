@@ -1,23 +1,19 @@
 <mat-table matSort [dataSource]="datasource" class="mat-elevation-z8" (matSortChange)="sortData($event)">
 
-  @for(column of displayedColumns; track column) {
+  @for(column of displayedColumns; track column;) {
   <ng-container [matColumnDef]="column">
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       {{ column | titlecase }}
     </mat-header-cell>
-    <mat-cell *matCellDef="let character">
+    <mat-cell *matCellDef="let value">
       @switch(column){
         @case ('image') {
-          <a [routerLink]="['/character', character.id]">
-            <img [src]="character.image" alt="{{ character.name }}" />
+          <a [routerLink]="[routerLinkData,  value['id']]">
+            <img [src]="value[column]" alt="{{ imageAlt }}" />
           </a>
         }
-        @case ('episodes') {
-          {{ character.episode.length }}
-        }
         @default {
-          {{ character[column] }}
-
+          {{ value[column] }}
         }
       }
     </mat-cell>

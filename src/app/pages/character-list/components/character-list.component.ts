@@ -81,39 +81,6 @@ export class CharacterListComponent implements OnInit, AfterViewInit,  OnDestroy
       .subscribe(() => this.loadNextPage());
   }
 
-  sortData(sort: Sort) {
-    this.characters$.pipe(
-      take(1),
-      map(characters => {
-        if (!sort.active || sort.direction === '') {
-          return characters;
-        }
-
-        return this.characters.sort((a, b) => {
-          const isAsc = sort.direction === 'asc';
-          switch (sort.active) {
-            case 'name':
-              return this.compare(a.name, b.name, isAsc);
-            case 'status':
-              return this.compare(a.status, b.status, isAsc);
-            case 'species':
-              return this.compare(a.species, b.species, isAsc);
-            case 'episodes':
-              return this.compare(a.episode.length, b.episode.length, isAsc);
-            default:
-              return 0;
-          }
-        });
-      })
-    ).subscribe(sortedCharacters => {
-      this.characters$ = of(sortedCharacters);
-    });
-  }
-
-  compare(a: any, b: any, isAsc: boolean) {
-    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-  }
-
   isUserNearBottom(): boolean {
     const scrollPosition = window.scrollY + window.innerHeight;
     const anchorPosition = this.bottomAnchor.nativeElement.offsetTop;
