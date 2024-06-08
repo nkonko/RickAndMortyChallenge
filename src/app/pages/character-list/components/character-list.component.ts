@@ -43,7 +43,6 @@ export class CharacterListComponent implements OnInit, AfterViewInit,  OnDestroy
   unsuscribe$ = new Subject<void>();
   scrollSubscription: Subscription | undefined;
 
-  @ViewChild(MatSort) sort!: MatSort;
   @ViewChild('bottomAnchor', { static: true }) bottomAnchor!: ElementRef;
 
   constructor(private store: Store) {
@@ -65,7 +64,6 @@ export class CharacterListComponent implements OnInit, AfterViewInit,  OnDestroy
 
     this.characters$.pipe(takeUntil(this.unsuscribe$)).subscribe(characters => {
       this.dataSource = new MatTableDataSource(characters);
-      this.dataSource.sort = this.sort;
       this.characters = [...characters];
     });
 
