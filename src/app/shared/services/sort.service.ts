@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Sort } from '@angular/material/sort';
-import { Observable, map, of, take } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class SortService {
     const dataToSort = [...data];
 
     const sortedData = dataToSort.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
+      const isAsc = sort.direction === 'desc';
       return this.compare(a[sort.active], b[sort.active], isAsc);
     });
 

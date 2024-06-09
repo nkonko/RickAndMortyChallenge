@@ -1,11 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
-import { MatCardModule } from '@angular/material/card';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatTableDataSource} from '@angular/material/table';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, Subscription, filter, fromEvent, map, of, take, takeUntil, throttleTime } from 'rxjs';
+import { Observable, Subject, Subscription, filter, fromEvent, takeUntil, throttleTime } from 'rxjs';
 import { loadCharacters, loadPage } from '../../../core/store/actions/character.action';
 import { Character } from '../../../core/models/character.interface';
 import { selectCharacters, selectPages } from '../../../core/store/selectors/character.selectors';
@@ -14,6 +10,8 @@ import { CommonMaterialModule } from '../../../core/modules/material/common-mate
 import { CharacterFilterInputComponent } from '../../../shared/character-filter-input/character-filter-input.component';
 import { RouterLink } from '@angular/router';
 import { CustomTableComponent } from '../../../shared/custom-table/custom-table.component';
+import { FormsModule } from '@angular/forms';
+import { FilterFn } from '../../../shared/character-filter-input/models/filter-fn.type';
 
 @Component({
   selector: 'app-character-list',
@@ -22,7 +20,8 @@ import { CustomTableComponent } from '../../../shared/custom-table/custom-table.
     CommonMaterialModule,
     CharacterFilterInputComponent,
     CustomTableComponent,
-    RouterLink
+    RouterLink,
+    FormsModule
   ],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.scss',
@@ -33,6 +32,14 @@ export class CharacterListComponent implements OnInit, AfterViewInit,  OnDestroy
   characters: Character[] = [];
   pageInfo$: Observable<Info>;
   info!: Info;
+  filterValues = {
+    name: '',
+    status: '',
+    species: ''
+  };
+  statuses = ['Alive', 'Dead', 'unknown'];
+  speciesList = ['Human', 'Alien', 'unknown'];
+
   displayedColumns: string[] = [
     'image',
     'name',
@@ -42,6 +49,7 @@ export class CharacterListComponent implements OnInit, AfterViewInit,  OnDestroy
   ];
   unsuscribe$ = new Subject<void>();
   scrollSubscription: Subscription | undefined;
+
 
   @ViewChild('bottomAnchor', { static: true }) bottomAnchor!: ElementRef;
 
@@ -65,6 +73,7 @@ export class CharacterListComponent implements OnInit, AfterViewInit,  OnDestroy
     this.characters$.pipe(takeUntil(this.unsuscribe$)).subscribe(characters => {
       this.dataSource = new MatTableDataSource(characters);
       this.characters = [...characters];
+      this.dataSource.filterPredicate = this.createFilter();
     });
 
     this.pageInfo$.pipe(takeUntil(this.unsuscribe$)).subscribe(info => {
@@ -94,9 +103,33 @@ export class CharacterListComponent implements OnInit, AfterViewInit,  OnDestroy
     }
   }
 
-  applyFilter(filterCriteria: any): void {
-    this.dataSource.filter = JSON.stringify(filterCriteria);
+  applyFilter(): void {
+    this.dataSource.filter = JSON.stringify(this.filterValues);
   }
 
+  clearFilter(): void {
+    this.filterValues = {
+      name: '',
+      status: '',
+      species: ''
+    };
+    this.applyFilter();
+  }
 
+  createFilter(): FilterFn<Character> {
+    return (data: Character, filter: string) => {
+      const filterValues = JSON.parse(filter);
+      return this.matchesByText(data.name, filterValues.name) &&
+             this.matchesBySelect(data.status, filterValues.status) &&
+             this.matchesBySelect(data.species, filterValues.species)
+    };
+  }
+
+  private matchesByText(data: string, textFilter: string): boolean {
+    return !textFilter || data.toLowerCase().includes(textFilter.toLowerCase());
+  }
+
+  private matchesBySelect(data: string, textFilter: string) : boolean {
+    return !textFilter || data === textFilter;
+  }
 }

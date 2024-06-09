@@ -7,6 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 const MATERIAL_MODULES = [
   CommonModule,
@@ -16,6 +17,7 @@ const MATERIAL_MODULES = [
   MatOptionModule,
   MatSelectModule,
   MatFormFieldModule,
+  MatInputModule,
   FlexLayoutModule
 ]
 
