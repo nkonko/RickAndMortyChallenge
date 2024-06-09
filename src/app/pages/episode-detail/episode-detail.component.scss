@@ -1,0 +1,60 @@
+@import '../../../assets/styles/variables.scss';
+
+img {
+  margin: 3px;
+  width: 6rem;
+  height: 6rem;
+  border: 5px solid whitesmoke;
+  border-radius: 4px;
+}
+
+button {
+  background: none;
+  border: none;
+  color: $text;
+  display: flex;
+}
+
+.episode-detail-container {
+  background-color: $cust-background-modal;
+}
+
+.episode-detail-card {
+  width: 90%;
+  margin: auto;
+  background-color: $cust-primary;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  color: $text;
+}
+
+.sub-title {
+  color: $text;
+  color: $cust-secondary;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+
+.content,
+.info-section {
+  background-color: $cust-background-modal;
+  border-radius: 4px;
+  margin: 10px;
+  padding: 20px;
+}
+
+
+@media (max-width: 600px) {
+  .episode-detail-card {
+    max-width: 100%;
+  }
+}

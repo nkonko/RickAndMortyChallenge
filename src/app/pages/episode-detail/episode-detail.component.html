@@ -1,25 +1,47 @@
 @if(episode$ | async; as episode) {
 
-<div>
-  <div class="episode-detail-container">
-    <h1>{{ episode.name }}</h1>
-    <p><strong>Air Date:</strong> {{ episode.air_date }}</p>
-    <p><strong>Episode Code:</strong> {{ episode.episode }}</p>
-    <p><strong>Characters:</strong></p>
-    <button (click)="printPage()">Print</button>
-    <ul>
-      @for (id of episode.charactersIds; track $index) {
-      <li>
-        <a [routerLink]="['/character', id]">
-          <img
-            [src]="characterImgBaseUrl + id + '.jpeg'"
-            alt="photo"
-          />
-        </a>
-      </li>
-      }
-    </ul>
-  </div>
+<div
+  fxLayout="column"
+  fxLayoutAlign="center stretch"
+  class="episode-detail-container m-2 p-4"
+>
+  <button
+    mat-icon-button
+    (click)="back()"
+    class="back-button mb-3"
+  >
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <button
+              mat-icon-button
+              (click)="printPage()">
+        <mat-icon>print</mat-icon>
+      </button>
+
+  <mat-card class="episode-detail-card">
+    <mat-card-header class="header justify-content-center">
+      <mat-card-title class="title text-center">{{ episode.name }}</mat-card-title>
+      <mat-card-subtitle class="sub-title text-center ">
+        CREATED - {{ episode.created }}</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content class="info-section">
+      <p><strong>Air Date:</strong> {{ episode.air_date }}</p>
+      <p><strong>Episode Code:</strong> {{ episode.episode }}</p>
+      </mat-card-content>
+      <mat-card-content class="content p-3">
+      <p><strong>Characters:</strong></p>
+        <ul class="list-inline">
+          @for (id of episode.charactersIds; track $index) {
+            <li class="list-inline-item">
+              <a [routerLink]="['/character', id]">
+                <img [src]="characterImgBaseUrl + id + '.jpeg'" alt="photo" />
+              </a>
+            </li>
+          }
+        </ul>
+    </mat-card-content>
+  </mat-card>
 </div>
 
 }
