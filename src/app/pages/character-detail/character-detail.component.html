@@ -1,32 +1,39 @@
-
 @if(character$ | async; as character) {
 
-  <div fxLayout="row" fxLayoutAlign="center" fxLayout.lt-md="column" fxLayoutGap.gt-md="24px" class="character-detail-container">
-    <div class="image-container">
-      <img class="image" [src]="character.image" alt="{{ character.name }}" >
-    </div>
-    <mat-card class="character-detail-card">
-      <mat-card-title-group>
-        <mat-card-header class="header">
-          <button mat-icon-button color="primary" (click)="back()" class="back-button">
-            <mat-icon>arrow_back</mat-icon> Back
-          </button>
-          <mat-card-title class="title">{{ character.name }}</mat-card-title>
-        <mat-card-subtitle>{{ character.status }} - {{ character.species }}</mat-card-subtitle>
-        </mat-card-header>
-      </mat-card-title-group>
-
-      <div fxLayout.gt-md="row" fxLayoutAlign.gt-md="center">
-        <mat-card-content class="content">
-          <p><strong>Gender:</strong> {{ character.gender }}</p>
-          <p><strong>Origin:</strong> {{ character.origin.name }}</p>
-          <p><strong>Location:</strong> {{ character.location.name }}</p>
-          <p><strong>Number of Episodes:</strong> {{ character.episode.length }}</p>
-        </mat-card-content>
+<div
+  fxLayout="column"
+  fxLayoutAlign="center stretch"
+  class="character-detail-container m-2"
+>
+  <mat-card class="character-detail-card">
+    <mat-card-title-group>
+      <mat-card-header class="header">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="back()"
+          class="back-button"
+        >
+          <mat-icon>arrow_back</mat-icon> Back
+        </button>
+        <mat-card-title class="title">{{ character.name }}</mat-card-title>
+        <mat-card-subtitle
+          >{{ character.status }} - {{ character.species }}</mat-card-subtitle
+        >
+      </mat-card-header>
+    </mat-card-title-group>
+    <mat-card-content>
+      <div class="image-container">
+        <img class="image" [src]="character.image" alt="{{ character.name }}" />
       </div>
-    </mat-card>
-
-
-  </div>
+    </mat-card-content>
+    <mat-card-content class="content">
+      <p><strong>Gender:</strong> {{ character.gender }}</p>
+      <p><strong>Origin:</strong> {{ character.origin.name }}</p>
+      <p><strong>Location:</strong> {{ character.location.name }}</p>
+      <p><strong>Number of Episodes:</strong> {{ character.episode.length }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
 
 }
