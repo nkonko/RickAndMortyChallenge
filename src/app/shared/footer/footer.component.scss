@@ -1,3 +1,32 @@
-.fill-space {
-  flex: 1 1 auto;
+// Estilo general del footer
+.footer-toolbar {
+  background-color: #8e44ad; // Violeta
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+
+  .footer-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+  }
+
+  .fill-space {
+    flex: 1 1 auto;
+  }
+}
+
+// Ajuste responsivo si es necesario
+@media (max-width: 768px) {
+  .footer-toolbar {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 10px;
+
+    .footer-text {
+      margin: 10px 0;
+    }
+  }
 }
