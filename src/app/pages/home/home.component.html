@@ -1,1 +1,125 @@
-<app-character-list></app-character-list>
+<div class="container">
+<h1>Welcome to Rick & Morty Angular App!</h1>
+
+  <p>
+    The objective of the exercise is to create an application from scratch using
+    Angular in its latest version. We will use a public API for the exercises:
+    <a href="https://rickandmortyapi.com/documentation" target="_blank"
+      >https://rickandmortyapi.com/documentation</a
+    >. Reusing components as well as clarity in the code and tests will be
+    positively evaluated. It's important to highlight that the application must
+    be responsive for both PC and tablet devices. No specific dimensions are
+    specified. Please, reply to this mail with the code in a zip file. I hope
+    you enjoy the test.
+  </p>
+
+  <h3>Exercise 1: Create an Angular project from scratch.</h3>
+  <p>The main view will be the entry point to:</p>
+  <ul>
+    <li>Rick & Morty characters (exercise 2)</li>
+    <li>Rick & Morty episodes (exercise 6)</li>
+    <li>Websocket (exercise 9)</li>
+  </ul>
+  <p>Feel free to design this entry view as you wish.</p>
+
+  <h3>Exercise 2 (view character list):</h3>
+  <p>
+    Add a view to show a list of characters. This must have those columns:
+    Image, Name, Status, Species, and number of episodes (counter). Allow order
+    by name, status, species, and number of episodes.
+  </p>
+  <p>
+    You must request the method GET
+    <a href="https://rickandmortyapi.com/api/character" target="_blank"
+      >https://rickandmortyapi.com/api/character</a
+    >
+    that retrieves 20 characters.
+  </p>
+
+  <h3>Exercise 3:</h3>
+  <p>
+    Add the infinite scroll to load new content is continuously loaded and
+    displayed as the user scrolls down the page (next page to the character
+    API).
+  </p>
+  <p>
+    GET
+    <a href="https://rickandmortyapi.com/api/character?page=2" target="_blank"
+      >https://rickandmortyapi.com/api/character?page=2</a
+    >
+  </p>
+
+  <h3>Exercise 4:</h3>
+  <p>
+    Add a filter to the list. We want to filter the data in the list by name,
+    status (dropdown), and species. Add a button to clear the filter and disable
+    the filter.
+  </p>
+
+  <h3>Exercise 5 (view character detail):</h3>
+  <p>
+    Add a new component to get details about the selected character. Try to show
+    all the images. Design this view as you wish.
+  </p>
+  <p>
+    GET
+    <a href="https://rickandmortyapi.com/api/character/2" target="_blank"
+      >https://rickandmortyapi.com/api/character/2</a
+    >
+  </p>
+
+  <h3>Exercise 6 (view episode list):</h3>
+  <p>
+    A new view will show a list of episodes, ordered by season and episode
+    number (ascending). The list will contains: Season, Episode number, name and
+    the air date. When the user clicks on an episode, he will navigate to the
+    episode detail view (next exercise).
+  </p>
+  <p>
+    GET
+    <a href="https://rickandmortyapi.com/api/episode" target="_blank"
+      >https://rickandmortyapi.com/api/episode</a
+    >
+  </p>
+
+  <h3>Exercise 7 (view episode detail):</h3>
+  <p>
+    This view will show the details of the episode. Show as much information as
+    possible, including the same list of characters (same list format of the
+    exercise 2, without filter). You can also navigate from this list of
+    character to the character detail.
+  </p>
+  <p>
+    GET
+    <a href="https://rickandmortyapi.com/api/episode/28" target="_blank"
+      >https://rickandmortyapi.com/api/episode/28</a
+    >
+  </p>
+
+  <h3>Exercise 8 (print):</h3>
+  <p>
+    We would like to print those forms using a regular printer. What would be
+    your suggestion? Try to add it to the episode detail view.
+  </p>
+
+  <h3>Exercise 9 (websocket view):</h3>
+  <p>
+    Create a websocket connection to <code>wss://ws.postman-echo.com/raw</code>.
+    Send a json message like <code> "message": "Hello there!" </code> and
+    write the socket response below.
+  </p>
+
+  <h3>Exercise 10 (SSO):</h3>
+  <p>
+    Add SSO to your app. You can use free providers for demo like this: SAML SSO
+    provided by Oauth0:
+    <a
+      href="https://auth0.com/docs/authenticate/protocols/saml/saml-configuration/configure-auth0-as-service-and-identity-provider"
+      target="_blank"
+      >https://auth0.com/docs/authenticate/protocols/saml/saml-configuration/configure-auth0-as-service-and-identity-provider</a
+    >
+    or other you prefer. Please, provide the username and password for testing.
+    You can use anonymous: yopmail.com.
+  </p>
+
+</div>

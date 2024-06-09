@@ -1,18 +1,19 @@
-<div class="filters">
+<!-- <div class="search-bar">
   <mat-form-field>
-    <input matInput placeholder="Name" [(ngModel)]="filterName">
+    <input matInput placeholder="Name" [(ngModel)]="filterValues.name" (ngModelChange)="applyFilter()">
   </mat-form-field>
+
   <mat-form-field>
-    <mat-label>Status</mat-label>
-    <mat-select [(ngModel)]="filterStatus">
-      <mat-option value="Alive">Alive</mat-option>
-      <mat-option value="Dead">Dead</mat-option>
-      <mat-option value="unknown">Unknown</mat-option>
+    <mat-select placeholder="Status" [(ngModel)]="filterValues.status" (selectionChange)="applyFilter()">
+      <mat-option *ngFor="let status of statuses" [value]="status">{{ status }}</mat-option>
     </mat-select>
   </mat-form-field>
+
   <mat-form-field>
-    <input matInput placeholder="Species" [(ngModel)]="filterSpecies">
+    <mat-select placeholder="Species" [(ngModel)]="filterValues.species" (selectionChange)="applyFilter()">
+      <mat-option *ngFor="let species of speciesList" [value]="species">{{ species }}</mat-option>
+    </mat-select>
   </mat-form-field>
-  <button mat-button (click)="applyFilter()">Apply Filter</button>
-  <button mat-button (click)="clearFilter()">Clear Filter</button>
-</div>
+
+  <button mat-raised-button (click)="clearFilter()">Clear Filters</button>
+</div> -->

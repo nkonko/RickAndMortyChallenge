@@ -117,7 +117,7 @@ export class CharacterListComponent implements OnInit, AfterViewInit,  OnDestroy
   }
 
   createFilter(): FilterFn<Character> {
-    return (data: Character, filter: string) => {
+    return (data, filter) => {
       const filterValues = JSON.parse(filter);
       return this.matchesByText(data.name, filterValues.name) &&
              this.matchesBySelect(data.status, filterValues.status) &&
