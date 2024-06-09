@@ -11,7 +11,7 @@ export interface CharactersState {
 }
 
 export const initialState: CharactersState = {
-  loading: true,
+  loading: false,
   info: null,
   characters: [],
   error: null,

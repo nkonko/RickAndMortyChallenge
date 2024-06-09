@@ -15,7 +15,9 @@ export const ErrorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
 
       errorMessage = error.error instanceof ErrorEvent ?
       `Error: ${error.error.message}`:
-      `Error Code: ${error.status}\n Message: ${error.message}`;
+      `Error Code: ${error.status}\n Message: Check console`;
+
+      console.log(error.message);
 
       snack.open(errorMessage, 'Close', {
         duration: 5000,
