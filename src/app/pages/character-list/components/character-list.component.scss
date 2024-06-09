@@ -1,11 +1,7 @@
-.character-card {
-  background-color: #2c2c2c; // Fondo gris oscuro
-  color: #fff; // Texto blanco
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+@import '../../../../assets/styles/variables.scss';
 
-  mat-card-title {
-    color: #fff; // Asegurar que el título sea blanco
-  }
+.character-card {
+  color: #fff;
 
   .table-header {
     display: flex;
@@ -14,49 +10,28 @@
     align-items: center;
     padding: 10px;
     margin-bottom: 20px;
-    background-color: #3c3c3c; // Fondo ligeramente más claro para los filtros
     border-radius: 5px;
-
-    .header {
-      flex: 1 1 100%;
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
 
     .search-bar {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      padding: 50px;
+      gap: 14px;
       width: 100%;
+      background-color: $cust-background-modal;
+      border-radius: 10px;
 
       mat-form-field {
         flex: 1 1 30%;
         min-width: 150px;
 
-        .mat-form-field-flex {
-          background-color: #fff; // Fondo blanco para los campos de entrada
-          color: #000; // Texto negro
+        input {
+          color: $text;
         }
 
         .mat-form-field-label {
-          color: #000; // Etiquetas negras
+          color: $text;
         }
-
-        mat-select {
-          color: #000; // Texto negro en el select
-        }
-
-        mat-option {
-          color: #000; // Opciones negras
-        }
-      }
-
-      button {
-        align-self: center;
-        height: 36px;
-        padding: 0 16px;
-        color: #fff; // Texto blanco en el botón
       }
     }
   }

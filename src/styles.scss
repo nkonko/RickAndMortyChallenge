@@ -1,20 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* COLORS */
-$cust-primary: #5932EA;
-$cust-secondary: #BEB7FB;
-$text: white;
-$text-hover: rgb(163, 65, 216);
-$active: $cust-secondary;
-$cust-background: #121829;
-
-/* FONTS */
-$main-size: 16px;
-$primary-font-family: Roboto, Helvetica, san-serif;
-$body-font-size: 1.5rem;
+@import './assets/styles/variables.scss';
 
 /*CUSTOMIZE BOOTSTRAP*/
-
 $primary:$cust-primary;
 $secondary:$cust-secondary;
 
@@ -52,5 +40,10 @@ a {
   &.active {
     color: $active;
   }
+}
+
+.btn-primary {
+  background-color: $primary;
+  border-color: white;
 }
 
