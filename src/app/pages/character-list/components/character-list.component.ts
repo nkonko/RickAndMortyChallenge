@@ -41,6 +41,7 @@ export class CharacterListComponent implements OnInit, AfterViewInit,  OnDestroy
   speciesList = ['Human', 'Alien', 'unknown'];
 
   displayedColumns: string[] = [
+    'link',
     'image',
     'name',
     'status',
