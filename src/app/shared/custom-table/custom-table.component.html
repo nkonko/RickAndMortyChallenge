@@ -1,18 +1,16 @@
-<div class="container">
-
-  <div class="gallery">
+  <div class="container">
     <mat-table
-  matSort
-[dataSource]="datasource"
-class="mat-elevation-z8"
-(matSortChange)="sortData($event)"
->
+              matSort
+              [dataSource]="datasource"
+              class="mat-elevation-z8"
+              (matSortChange)="sortData($event)"
+    >
 @for(column of displayedColumns; track column;) {
   <ng-container [matColumnDef]="column">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
+    <mat-header-cell class="justify-content-center" *matHeaderCellDef mat-sort-header>
       {{ column | titlecase }}
     </mat-header-cell>
-  <mat-cell *matCellDef="let value">
+  <mat-cell class="justify-content-center" *matCellDef="let value">
     @switch(column){
        @case ('image') {
       <a [routerLink]="[routerLinkData, value['id']]">
@@ -36,4 +34,3 @@ class="mat-elevation-z8"
 </mat-table>
 </div>
 
-</div>
