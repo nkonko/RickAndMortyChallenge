@@ -31,8 +31,14 @@ export const routes: Routes = [
   {
     path: 'episode/:id',
     loadComponent: () =>
-            import('./pages/character-detail/character-detail.component')
-            .then(m => m.CharacterDetailComponent)
+            import('./pages/episode-detail/episode-detail.component')
+            .then(m => m.EpisodeDetailComponent)
   },
-  // { path: '**', redirectTo: 'not-found'}
+  {
+    path: 'not-found',
+    loadComponent: () =>
+            import('./pages/not-found/not-found.component')
+            .then(m => m.NotFoundComponent)
+  },
+  { path: '**', redirectTo: 'not-found'}
 ];

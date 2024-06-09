@@ -6,6 +6,7 @@ export interface Episode {
   episode: string;
   number: string;
   characters: string[];
+  charactersIds: string[];
   url: string;
   created: string;
 }

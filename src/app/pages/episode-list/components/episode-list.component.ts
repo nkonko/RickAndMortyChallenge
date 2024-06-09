@@ -24,6 +24,7 @@ export class EpisodeListComponent implements OnInit, AfterViewInit, OnDestroy{
   info!: Info;
 
   displayedColumns: string[] = [
+    'link',
     'season',
     'number',
     'name',

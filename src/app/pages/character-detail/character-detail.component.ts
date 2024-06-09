@@ -3,36 +3,36 @@ import { CommonMaterialModule } from '../../core/modules/material/common-materia
 import { Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { Character } from '../../core/models/character.interface';
 import { Store } from '@ngrx/store';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { selectCharactersById } from '../../core/store/selectors/characters.selectors';
+import { ActivatedRoute } from '@angular/router';
+import { selectCharacterById } from '../../core/store/selectors/characters.selectors';
 import { LocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-character-detail',
   standalone: true,
-  imports: [CommonMaterialModule, RouterLink],
+  imports: [CommonMaterialModule],
   templateUrl: './character-detail.component.html',
   styleUrl: './character-detail.component.scss',
 })
 export class CharacterDetailComponent implements OnInit, OnDestroy {
   character$!: Observable<Character | undefined>;
-  unsuscribe$ = new Subject<void>();
+  unsubscribe$ = new Subject<void>();
 
   constructor(private store: Store, private route: ActivatedRoute, private location: LocationStrategy) {}
 
-  ngOnDestroy(): void {
-    this.unsuscribe$.next();
-    this.unsuscribe$.complete();
-  }
-
   ngOnInit(): void {
     this.character$ = this.route.paramMap.pipe(
-      takeUntil(this.unsuscribe$),
+      takeUntil(this.unsubscribe$),
       switchMap(params => {
         const id = Number(params.get('id'));
-        return this.store.select(selectCharactersById(id));
+        return this.store.select(selectCharacterById(id));
       })
     );
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   back() {

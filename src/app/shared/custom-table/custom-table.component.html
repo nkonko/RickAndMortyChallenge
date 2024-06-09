@@ -13,11 +13,18 @@ class="mat-elevation-z8"
       {{ column | titlecase }}
     </mat-header-cell>
   <mat-cell *matCellDef="let value">
-    @switch(column){ @case ('image') {
+    @switch(column){
+       @case ('image') {
       <a [routerLink]="[routerLinkData, value['id']]">
         <img [src]="value[column]" alt="{{ imageAlt }}" />
       </a>
-    } @default {
+    }
+    @case ('link') {
+      <a [routerLink]="[routerLinkData, value['id']]">
+        <mat-icon>open_in_new</mat-icon>
+      </a>
+    }
+    @default {
       {{ value[column] }}
     } }
   </mat-cell>

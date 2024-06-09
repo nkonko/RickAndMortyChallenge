@@ -3,7 +3,17 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { EpisodeService } from '../../../pages/episode-list/episode.service';
-import { loadEpisodeDetail, loadEpisodeDetailFailure, loadEpisodeDetailSuccess, loadEpisodes, loadEpisodesFailure, loadEpisodesPage, loadEpisodesPageFailure, loadEpisodesPageSuccess, loadEpisodesSuccess } from '../actions/episodes/episodes.action';
+import {
+  loadEpisodeDetail,
+  loadEpisodeDetailFailure,
+  loadEpisodeDetailSuccess,
+  loadEpisodes,
+  loadEpisodesFailure,
+  loadEpisodesPage,
+  loadEpisodesPageFailure,
+  loadEpisodesPageSuccess,
+  loadEpisodesSuccess,
+} from '../actions/episodes/episodes.action';
 import { ApiEpisode } from '../../models/api-episode.interface';
 import { Episode } from '../../models/episode.interface';
 
@@ -21,9 +31,8 @@ export class EpisodeEffects {
         this.episodeService.getEpisodes().pipe(
           map((episodes) => {
             const modified = this.splitEpisode(episodes);
-            return loadEpisodesSuccess({ data: modified })
-          }
-        ),
+            return loadEpisodesSuccess({ data: modified });
+          }),
           catchError((error) => of(loadEpisodesFailure({ error })))
         )
       )
@@ -50,7 +59,10 @@ export class EpisodeEffects {
       ofType(loadEpisodeDetail),
       switchMap(({ episodeId }) =>
         this.episodeService.getEpisodeById(episodeId).pipe(
-          map((episode) => loadEpisodeDetailSuccess({ episode: episode })),
+          map((episode) => {
+            const modified = this.setCharacterIds(episode);
+            return loadEpisodeDetailSuccess({ episode: modified });
+          }),
           catchError((error) => of(loadEpisodeDetailFailure({ error })))
         )
       )
@@ -61,16 +73,27 @@ export class EpisodeEffects {
     return {
       ...data,
       results: data.results.map((episode: Episode) => {
-        const [season, number ] = episode.episode.split('E')
+        const [season, number] = episode.episode.split('E');
 
         const completeEpisode: Episode = {
           ...episode,
           season: season,
-          number: number
-        }
+          number: number,
+        };
 
         return completeEpisode;
-      })
-    }
+      }),
+    };
+  }
+
+  setCharacterIds(episode: Episode) {
+    return {
+      ...episode,
+      charactersIds: episode.characters.map((url) => {
+        const lastSlashIndex = url.lastIndexOf('/');
+        const id = url.substring(lastSlashIndex + 1);
+        return id;
+      }),
+    };
   }
 }

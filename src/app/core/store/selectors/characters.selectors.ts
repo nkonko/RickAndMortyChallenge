@@ -9,7 +9,7 @@ export const selectCharacters = createSelector(
   (state: CharactersState) => state.characters
 );
 
-export const selectCharactersById = (characterId: number) => createSelector(
+export const selectCharacterById = (characterId: number) => createSelector(
   selectCharacters,
   (characters: Character[]) => characters.find(character => character.id === characterId)
 );
