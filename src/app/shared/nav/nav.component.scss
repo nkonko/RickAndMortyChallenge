@@ -1,27 +1,8 @@
-// Estilo general de la barra de navegación
 .nav-toolbar {
-  background-color: #8e44ad; // Violeta
+  background-color: #5932EA;
   display: flex;
   align-items: center;
   padding: 0 20px;
-
-  a {
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
-    color: white;
-    text-decoration: none;
-    margin-right: 20px;
-    padding: 10px 0;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: #d3d3d3;
-    }
-
-    &.active-link {
-      color: #b3b3b329;
-    }
-  }
 
   .fill-space {
     flex: 1 1 auto;

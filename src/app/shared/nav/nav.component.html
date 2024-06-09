@@ -1,8 +1,15 @@
 <mat-toolbar color="primary" class="nav-toolbar">
-  <a routerLink="/home" routerLinkActive="active-link">Home</a>
-  <a routerLink="/characters" routerLinkActive="active-link">Characters</a>
-  <a routerLink="/episodes" routerLinkActive="active-link">Episodes</a>
-  <a routerLink="/web-socket" routerLinkActive="active-link">Web Socket</a>
+  <a routerLink="home">
+    <img
+      src="../../../assets/img/rickAndMortyLogo.svg"
+      alt="Rick and Morty"
+      class="logo"
+    />
+  </a>
   <span class="fill-space"></span>
-  <img src="../../../assets/img/rickAndMortyLogo.svg" alt="Rick and Morty" class="logo">
+  @for (link of links; track $index) {
+  <a class="link" [routerLink]="link" routerLinkActive="active">{{
+    link | titlecase
+  }}</a>
+  }
 </mat-toolbar>

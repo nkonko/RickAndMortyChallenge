@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { WebsocketService } from '../service/web-socket.service';
+import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
 
 @Component({
   selector: 'app-web-socket-view',
   standalone: true,
-  imports: [],
+  imports: [SpinnerComponent],
   templateUrl: './web-socket-view.component.html',
   styleUrl: './web-socket-view.component.scss'
 })

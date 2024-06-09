@@ -1,4 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* COLORS */
+$cust-primary: #5932EA;
+$cust-secondary: #BEB7FB;
+$text: white;
+$text-hover: rgb(163, 65, 216);
+$active: $cust-secondary;
+$cust-background: #121829;
+
+/* FONTS */
+$main-size: 16px;
+$primary-font-family: Roboto, Helvetica, san-serif;
+$body-font-size: 1.5rem;
+
+/*CUSTOMIZE BOOTSTRAP*/
+
+$primary:$cust-primary;
+$secondary:$cust-secondary;
+
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+/* GENERAL */
+
+html {
+  font-size: $main-size;
+}
+body {
+  width: 100%;
+  height: auto;
+  font-family: $primary-font-family;
+  font-size: $body-font-size;
+  background-color: $cust-background;
+  color: $text;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $text;
+}
+
+a {
+  font-size: 18px;
+  color: $text;
+  text-decoration: none;
+  margin-right: 20px;
+  padding: 10px 0;
+
+  &:hover {
+    color: $text-hover;
+  }
+
+  &.active {
+    color: $active;
+  }
+}
+
