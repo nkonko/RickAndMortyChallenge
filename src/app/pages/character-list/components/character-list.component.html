@@ -1,38 +1,39 @@
+<div fxLayout="column" fxLayoutAlign="center stretch">
 
-  <div fxLayout="column" fxLayoutAlign="center stretch">
-
-  <mat-card>
+  <mat-card class="character-card">
     <mat-card-title>Character List</mat-card-title>
     <mat-card-content>
-     <div class="table-header">
-        <div class="dc-h3 header"></div>
+      <div class="table-header">
+        <div class="dc-h3 header">Filtros</div>
         <div class="search-bar">
-          <mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
             <input matInput placeholder="Name" [(ngModel)]="filterValues.name" (ngModelChange)="applyFilter()">
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Estado</mat-label>
             <mat-select placeholder="Status" [(ngModel)]="filterValues.status" (selectionChange)="applyFilter()">
               <mat-option *ngFor="let status of statuses" [value]="status">{{ status }}</mat-option>
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Especie</mat-label>
             <mat-select placeholder="Species" [(ngModel)]="filterValues.species" (selectionChange)="applyFilter()">
               <mat-option *ngFor="let species of speciesList" [value]="species">{{ species }}</mat-option>
             </mat-select>
           </mat-form-field>
 
-          <button mat-raised-button (click)="clearFilter()">Clear Filters</button>
+          <button mat-raised-button color="warn" (click)="clearFilter()">Clear Filters</button>
         </div>
       </div>
-        <app-custom-table
-                          [datasource]="dataSource"
-                          [displayedColumns]="displayedColumns"
-                          [imageAlt]="'picture'"
-                          routerLinkData="/character"
-        ></app-custom-table>
-
+      <app-custom-table
+        [datasource]="dataSource"
+        [displayedColumns]="displayedColumns"
+        [imageAlt]="'picture'"
+        routerLinkData="/character">
+      </app-custom-table>
     </mat-card-content>
     <div #bottomAnchor></div>
   </mat-card>

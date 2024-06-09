@@ -6,16 +6,16 @@ import {
   loadCharacters,
   loadCharactersFailure,
   loadCharactersSuccess,
-  loadPage,
-  loadPageFailure,
-  loadPageSuccess,
-} from '../actions/character.action';
+  loadCharsPage,
+  loadCharsPageFailure,
+  loadCharsPageSuccess,
+} from '../actions/characters/characters.action';
 import { of } from 'rxjs';
 import { Character } from '../../models/character.interface';
-import { ApiData } from '../../models/api-data.interface';
+import { ApiCharacter } from '../../models/api-character.interface';
 
 @Injectable()
-export class CharacterEffects {
+export class CharactersEffects {
   constructor(
     private actions$: Actions,
     private characterService: CharacterService
@@ -38,20 +38,20 @@ export class CharacterEffects {
 
   loadPage$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(loadPage),
+      ofType(loadCharsPage),
       switchMap((res) =>
         this.characterService.getCharactersByPage(res.pageUrl).pipe(
           map((data) => {
             const modified = this.setLength(data);
-            return loadPageSuccess({ data: modified });
+            return loadCharsPageSuccess({ data: modified });
           }),
-          catchError((error) => of(loadPageFailure({ error })))
+          catchError((error) => of(loadCharsPageFailure({ error })))
         )
       )
     )
   );
 
-  setLength(data: ApiData) {
+  setLength(data: ApiCharacter) {
     return {
       ...data,
       results: data.results.map((character: Character) => ({

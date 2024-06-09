@@ -4,7 +4,7 @@ import { Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { Character } from '../../core/models/character.interface';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { selectCharactersById } from '../../core/store/selectors/character.selectors';
+import { selectCharactersById } from '../../core/store/selectors/characters.selectors';
 import { LocationStrategy } from '@angular/common';
 
 @Component({

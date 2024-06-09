@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
-import { ApiData } from '../../../core/models/api-data.interface';
+import { ApiCharacter } from '../../../core/models/api-character.interface';
+import { Character } from '../../../core/models/character.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,16 @@ export class CharacterService {
 
   constructor(private http: HttpClient) {}
 
-  getCharacters(): Observable<ApiData> {
-    return this.http.get<ApiData>(this.ApiURL);
+  getCharacters(): Observable<ApiCharacter> {
+    return this.http.get<ApiCharacter>(this.ApiURL);
   }
 
-  getCharactersByPage(pageUrl: string): Observable<ApiData> {
-    return this.http.get<ApiData>(pageUrl);
+  getCharactersByPage(pageUrl: string): Observable<ApiCharacter> {
+    return this.http.get<ApiCharacter>(pageUrl);
+  }
+
+  getCharactersById(characterId: number): Observable<Character> {
+    const characterUrl = `${this.ApiURL}/${characterId}`;
+    return this.http.get<Character>(characterUrl);
   }
 }

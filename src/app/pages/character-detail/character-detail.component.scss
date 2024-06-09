@@ -1,19 +1,43 @@
 .character-detail-container {
   padding: 16px;
+  background-color: #f9f9f9; /* Fondo blanco pálido */
 }
 
 .character-detail-card {
-  max-width: 600px;
+  width: 100%;
+  max-width: 800px; /* Ajusta el ancho máximo según tus necesidades */
   margin: auto;
+  background-color: #8e44ad; /* Cambia el color de fondo */
+}
+
+.header {
+  display: flex;
+  justify-content: center; /* Alinea los elementos a los lados */
+  padding: 16px; /* Ajusta el espacio alrededor del encabezado */
+}
+
+.title {
+  font-size: 40px; /* Tamaño de fuente más grande para el título */
+  color: white; /* Color de texto blanco */
+}
+
+.image {
+  padding: 10px;
+  background-color: whitesmoke;
+  border-radius: 4px;
+}
+
+.content {
+  padding: 10px; /* Ajusta el espacio alrededor del contenido */
+  background-color: whitesmoke; /* Color de fondo */
+  border-radius: 4px; /* Bordes redondeados */
+  width: 70%; /* Ancho menos el ancho de la imagen */
+  height: auto;
+  margin: 20px;
 }
 
 @media (max-width: 600px) {
   .character-detail-card {
     max-width: 100%;
   }
-}
-
-img {
-  max-width: 100%;
-  height: auto;
 }

@@ -1,0 +1,15 @@
+<div fxLayout="column" fxLayoutAlign="center stretch">
+
+  <mat-card class="episode-card">
+    <mat-card-title>Episodes</mat-card-title>
+    <mat-card-content>
+      <app-custom-table
+        [datasource]="dataSource"
+        [displayedColumns]="displayedColumns"
+        [imageAlt]="'picture'"
+        routerLinkData="/episode">
+      </app-custom-table>
+    </mat-card-content>
+    <div #bottomAnchor></div>
+  </mat-card>
+</div>

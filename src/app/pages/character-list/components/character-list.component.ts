@@ -2,9 +2,9 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } fr
 import { MatTableDataSource} from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, Subscription, filter, fromEvent, takeUntil, throttleTime } from 'rxjs';
-import { loadCharacters, loadPage } from '../../../core/store/actions/character.action';
+import { loadCharacters, loadCharsPage } from '../../../core/store/actions/characters/characters.action';
 import { Character } from '../../../core/models/character.interface';
-import { selectCharacters, selectPages } from '../../../core/store/selectors/character.selectors';
+import { selectCharacters, selectCharactersPages } from '../../../core/store/selectors/characters.selectors';
 import { Info } from '../../../core/models/info.interface';
 import { CommonMaterialModule } from '../../../core/modules/material/common-material.module';
 import { CharacterFilterInputComponent } from '../../../shared/character-filter-input/character-filter-input.component';
@@ -50,12 +50,11 @@ export class CharacterListComponent implements OnInit, AfterViewInit,  OnDestroy
   unsuscribe$ = new Subject<void>();
   scrollSubscription: Subscription | undefined;
 
-
   @ViewChild('bottomAnchor', { static: true }) bottomAnchor!: ElementRef;
 
   constructor(private store: Store) {
     this.characters$ = this.store.select(selectCharacters);
-    this.pageInfo$ = this.store.select(selectPages);
+    this.pageInfo$ = this.store.select(selectCharactersPages);
   }
 
   ngOnDestroy(): void {
@@ -99,7 +98,7 @@ export class CharacterListComponent implements OnInit, AfterViewInit,  OnDestroy
   loadNextPage(): void {
     const nextPage = this.info?.next;
     if (nextPage) {
-      this.store.dispatch(loadPage({pageUrl: nextPage}))
+      this.store.dispatch(loadCharsPage({pageUrl: nextPage}))
     }
   }
 

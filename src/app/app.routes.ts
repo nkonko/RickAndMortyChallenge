@@ -22,5 +22,17 @@ export const routes: Routes = [
             import('./pages/character-detail/character-detail.component')
             .then(m => m.CharacterDetailComponent)
   },
+  {
+    path: 'episodes',
+    loadComponent: () =>
+            import('./pages/episode-list/components/episode-list.component')
+            .then(m => m.EpisodeListComponent)
+  },
+  {
+    path: 'episode/:id',
+    loadComponent: () =>
+            import('./pages/character-detail/character-detail.component')
+            .then(m => m.CharacterDetailComponent)
+  },
   // { path: '**', redirectTo: 'not-found'}
 ];

@@ -6,18 +6,20 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { CharacterEffects } from './core/store/effects/character.effects';
-import { characterReducer } from './core/store/reducers/character.reducers';
+import { CharactersEffects } from './core/store/effects/characters.effects';
+import { charactersReducer } from './core/store/reducers/characters.reducers';
 import { ErrorHandlerInterceptor } from './core/interceptors/error-handler.interceptor';
 import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { EpisodeEffects } from './core/store/effects/episodes.effects';
+import { episodeReducer } from './core/store/reducers/episodes.reducer';
 
 export const appConfig: ApplicationConfig = {
     providers: [
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideStore({ characters: characterReducer }),
-    provideEffects(CharacterEffects),
+    provideStore({ characters: charactersReducer, episodes: episodeReducer }),
+    provideEffects(CharactersEffects, EpisodeEffects),
     provideHttpClient(withInterceptors([ErrorHandlerInterceptor, SpinnerInterceptor])),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
 ]
