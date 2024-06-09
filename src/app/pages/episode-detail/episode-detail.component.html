@@ -1,20 +1,24 @@
 @if(episode$ | async; as episode) {
 
-  <div>
-    <div class="episode-detail-container">
-      <h1>{{ episode.name }}</h1>
+<div>
+  <div class="episode-detail-container">
+    <h1>{{ episode.name }}</h1>
     <p><strong>Air Date:</strong> {{ episode.air_date }}</p>
     <p><strong>Episode Code:</strong> {{ episode.episode }}</p>
-  <p><strong>Characters:</strong></p>
-<ul>
-  @for (id of episode.charactersIds; track $index) {
-    <li>
-      <a [routerLink]="['/character', id]">
-        <img [src]="'https://rickandmortyapi.com/api/character/avatar/'+ id + '.jpeg'" alt="photo" />
-      </a>
-    </li>
-  }
-</ul>
+    <p><strong>Characters:</strong></p>
+    <button (click)="printPage()">Print</button>
+    <ul>
+      @for (id of episode.charactersIds; track $index) {
+      <li>
+        <a [routerLink]="['/character', id]">
+          <img
+            [src]="characterImgBaseUrl + id + '.jpeg'"
+            alt="photo"
+          />
+        </a>
+      </li>
+      }
+    </ul>
   </div>
 </div>
 

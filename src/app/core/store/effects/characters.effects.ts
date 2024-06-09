@@ -3,6 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { CharacterService } from '../../../pages/character-list/services/character.service';
 import {
+  loadCharacterDetail,
+  loadCharacterDetailFailure,
+  loadCharacterDetailSuccess,
   loadCharacters,
   loadCharactersFailure,
   loadCharactersSuccess,
@@ -46,6 +49,20 @@ export class CharactersEffects {
             return loadCharsPageSuccess({ data: modified });
           }),
           catchError((error) => of(loadCharsPageFailure({ error })))
+        )
+      )
+    )
+  );
+
+  loadCharacterDetail$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loadCharacterDetail),
+      switchMap(({ characterId }) =>
+        this.characterService.getCharactersById(characterId).pipe(
+          map((character) => {
+            return loadCharacterDetailSuccess({ character: character });
+          }),
+          catchError((error) => of(loadCharacterDetailFailure({ error })))
         )
       )
     )

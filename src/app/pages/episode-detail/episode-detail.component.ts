@@ -5,7 +5,10 @@ import { LocationStrategy } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { loadEpisodeDetail } from '../../core/store/actions/episodes/episodes.action';
-import { selectSelectedEpisode } from '../../core/store/selectors/episodes.selectors';
+import {
+  selectEpisodeById,
+  selectSelectedEpisode,
+} from '../../core/store/selectors/episodes.selectors';
 import { CommonMaterialModule } from '../../core/modules/material/common-material.module';
 
 @Component({
@@ -18,16 +21,30 @@ import { CommonMaterialModule } from '../../core/modules/material/common-materia
 export class EpisodeDetailComponent implements OnInit, OnDestroy {
   episode$!: Observable<Episode | null>;
   unsubscribe$ = new Subject<void>();
+  characterImgBaseUrl:string = 'https://rickandmortyapi.com/api/character/avatar/';
 
-  constructor(private store: Store, private route: ActivatedRoute, private location: LocationStrategy){}
+  constructor(
+    private store: Store,
+    private route: ActivatedRoute,
+    private location: LocationStrategy
+  ) {}
 
   ngOnInit(): void {
     this.episode$ = this.route.paramMap.pipe(
       takeUntil(this.unsubscribe$),
-      switchMap(params => {
+      switchMap((params) => {
         const id = Number(params.get('id'));
-        this.store.dispatch(loadEpisodeDetail({ episodeId: id }));
-        return this.store.select(selectSelectedEpisode);
+
+        return this.store.select(selectEpisodeById(id)).pipe(
+          switchMap((episode) => {
+            if (episode) {
+              return [episode];
+            } else {
+              this.store.dispatch(loadEpisodeDetail({ episodeId: id }));
+              return this.store.select(selectSelectedEpisode);
+            }
+          })
+        );
       })
     );
   }
@@ -39,5 +56,9 @@ export class EpisodeDetailComponent implements OnInit, OnDestroy {
 
   back() {
     this.location.back();
+  }
+
+  printPage() {
+    window.print();
   }
 }

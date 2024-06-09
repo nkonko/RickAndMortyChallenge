@@ -73,10 +73,11 @@ export class EpisodeEffects {
     return {
       ...data,
       results: data.results.map((episode: Episode) => {
-        const [season, number] = episode.episode.split('E');
+        const partialEpisode = this.setCharacterIds(episode);
+        const [season, number] = partialEpisode.episode.split('E');
 
         const completeEpisode: Episode = {
-          ...episode,
+          ...partialEpisode,
           season: season,
           number: number,
         };

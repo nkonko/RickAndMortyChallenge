@@ -35,6 +35,12 @@ export const routes: Routes = [
             .then(m => m.EpisodeDetailComponent)
   },
   {
+    path: 'web-socket',
+    loadComponent: () =>
+            import('./pages/web-socket-view/components/web-socket-view.component')
+            .then(m => m.WebSocketViewComponent)
+  },
+  {
     path: 'not-found',
     loadComponent: () =>
             import('./pages/not-found/not-found.component')
