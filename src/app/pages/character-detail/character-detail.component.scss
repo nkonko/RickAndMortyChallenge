@@ -1,37 +1,41 @@
+@import '../../../assets/styles/variables.scss';
+
+img {
+  border: 5px solid whitesmoke;
+  border-radius: 4px;
+}
+
 .character-detail-container {
-  padding: 16px;
-  background-color: #f9f9f9; /* Fondo blanco pálido */
+  background-color: $cust-background-modal;
 }
 
 .character-detail-card {
   width: 100%;
-  max-width: 800px; /* Ajusta el ancho máximo según tus necesidades */
+  max-width: 500px;
   margin: auto;
-  background-color: #8e44ad; /* Cambia el color de fondo */
+  background-color: $cust-primary;
 }
 
 .header {
   display: flex;
-  justify-content: center; /* Alinea los elementos a los lados */
-  padding: 16px; /* Ajusta el espacio alrededor del encabezado */
+  justify-content: space-between;
+  padding: 1rem;
 }
 
 .title {
-  font-size: 40px; /* Tamaño de fuente más grande para el título */
-  color: white; /* Color de texto blanco */
+  font-size: 2rem;
+  color: $text;
 }
 
-.image {
-  padding: 10px;
-  background-color: whitesmoke;
-  border-radius: 4px;
+.sub-title {
+  color: $text;
 }
+
 
 .content {
-  padding: 10px; /* Ajusta el espacio alrededor del contenido */
-  background-color: whitesmoke; /* Color de fondo */
-  border-radius: 4px; /* Bordes redondeados */
-  width: 70%; /* Ancho menos el ancho de la imagen */
+  background-color: $cust-background-modal;
+  border-radius: 4px;
+  width: auto;
   height: auto;
   margin: 20px;
 }
@@ -40,4 +44,11 @@
   .character-detail-card {
     max-width: 100%;
   }
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: $text;
+  display: flex;
 }
