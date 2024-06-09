@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonMaterialModule } from '../../core/modules/material/common-material.module';
-import { Observable, Subject, switchMap } from 'rxjs';
+import { Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { Character } from '../../core/models/character.interface';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { selectCharactersById } from '../../core/store/selectors/character.selectors';
+import { LocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-character-detail',
@@ -17,13 +18,16 @@ export class CharacterDetailComponent implements OnInit, OnDestroy {
   character$!: Observable<Character | undefined>;
   unsuscribe$ = new Subject<void>();
 
-  constructor(private store: Store, private route: ActivatedRoute) {}
+  constructor(private store: Store, private route: ActivatedRoute, private location: LocationStrategy) {}
 
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    this.unsuscribe$.next();
+    this.unsuscribe$.complete();
   }
+
   ngOnInit(): void {
     this.character$ = this.route.paramMap.pipe(
+      takeUntil(this.unsuscribe$),
       switchMap(params => {
         const id = Number(params.get('id'));
         return this.store.select(selectCharactersById(id));
@@ -31,7 +35,7 @@ export class CharacterDetailComponent implements OnInit, OnDestroy {
     );
   }
 
-  print() {
-    window.print()
+  back() {
+    this.location.back();
   }
 }
