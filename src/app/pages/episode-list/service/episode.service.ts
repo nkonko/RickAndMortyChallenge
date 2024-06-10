@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment.development';
-import { Episode } from '../../core/models/episode.interface';
-import { ApiEpisode } from '../../core/models/api-episode.interface';
+import { environment } from '../../../../environments/environment.development';
+import { Episode } from '../../../core/models/episode.interface';
+import { ApiEpisode } from '../../../core/models/api-episode.interface';
 
 @Injectable({
   providedIn: 'root'

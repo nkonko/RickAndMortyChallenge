@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { EpisodeService } from '../../../pages/episode-list/episode.service';
+import { EpisodeService } from '../../../pages/episode-list/service/episode.service';
 import {
   loadEpisodeDetail,
   loadEpisodeDetailFailure,

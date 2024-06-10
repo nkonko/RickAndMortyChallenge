@@ -7,18 +7,16 @@ import { Character } from '../../../core/models/character.interface';
 import { selectCharacters, selectCharactersPages } from '../../../core/store/selectors/characters.selectors';
 import { Info } from '../../../core/models/info.interface';
 import { CommonMaterialModule } from '../../../core/modules/material/common-material.module';
-import { CharacterFilterInputComponent } from '../../../shared/character-filter-input/character-filter-input.component';
 import { RouterLink } from '@angular/router';
 import { CustomTableComponent } from '../../../shared/custom-table/custom-table.component';
 import { FormsModule } from '@angular/forms';
-import { FilterFn } from '../../../shared/character-filter-input/models/filter-fn.type';
+import { FilterFn } from '../../../core/models/filter-fn.type';
 
 @Component({
   selector: 'app-character-list',
   standalone: true,
   imports: [
     CommonMaterialModule,
-    CharacterFilterInputComponent,
     CustomTableComponent,
     RouterLink,
     FormsModule
