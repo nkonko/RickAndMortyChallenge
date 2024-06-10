@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "y",
+    "public": "dist/rick-and-morty-challenge/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
