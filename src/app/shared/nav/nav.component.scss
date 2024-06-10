@@ -1,25 +1,15 @@
-.nav-toolbar {
-  background-color: #5932EA;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
+@import '../../../assets/styles/variables.scss';
 
-  .fill-space {
-    flex: 1 1 auto;
-  }
-
-  .logo {
+.navbar {
+  background-color: $cust-primary;
+  .navbar-brand .logo {
     height: 40px;
   }
-}
-
-// Ajuste responsivo si es necesario
-@media (max-width: 768px) {
-  .nav-toolbar {
-    flex-direction: column;
-
-    a {
-      margin: 10px 0;
-    }
+  .navbar-nav .nav-link {
+    color: white !important;
+  }
+  .active {
+    font-weight: bold;
   }
 }
+

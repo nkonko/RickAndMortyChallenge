@@ -12,4 +12,8 @@ import { TitleCasePipe } from '@angular/common';
 })
 export class NavComponent {
   links = ['home', 'characters', 'episodes', 'web-socket']
+  isCollapsed = true;
+
+  toggleMenu() {
+  }
 }
